@@ -17,9 +17,33 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ,
+      home: LoginScreen(),
     );
   }
 }
 
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginState();
+}
+
+class _LoginState extends State<LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Welcome'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('Enter'),
+          onPressed: () {
+
+          }),
+      ),
+    );
+  }
+}
 
