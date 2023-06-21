@@ -21,15 +21,26 @@ class _CatalogState extends State<Catalog> {
       IconButton(
           icon: Icon(Icons.archive),
           onPressed:() {
-
           },
           ),
         ],
       ),
       body: ListView(
-        children: <Widget>[
-
-        ],
+        children:_itemList
+            .map((item) => _buildItem(item))
+        .toList(), //리스트로 재변환
       ),
     );
   }
+
+  Widget _buildItem(Item item){
+    return Padding(
+      child: ListTile(
+        title: Text(
+          item.title,
+          style: TextStyle(fontSize: 31.0),
+        ),
+      ),padding: const EdgeInsets.all(8.0),
+    );
+  }
+}
