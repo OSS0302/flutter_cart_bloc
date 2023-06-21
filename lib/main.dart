@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cart_bloc/catalog.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,34 +39,14 @@ class _LoginState extends State<LoginScreen> {
         child: ElevatedButton(
           child: Text('Enter'),
           onPressed: () {
-
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context)=> Catalog()));
           }),
       ),
     );
   }
 }
 
-// 두번째 화면 stful 위젯
-class Catalog extends StatefulWidget {
-  const Catalog({Key? key}) : super(key: key);
 
-  @override
-  State<Catalog> createState() => _CatalogState();
-}
-
-class _CatalogState extends State<Catalog> {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar:  AppBar(
-        title: Text('catclog'),
-        actions: <Widget>[
-        ],
-      ),
-    );
-  }
-}
 
 
