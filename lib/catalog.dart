@@ -26,7 +26,7 @@ class _CatalogState extends State<Catalog> {
         ],
       ),
       body: ListView(
-        children:_itemList
+        children: _itemList
             .map((item) => _buildItem(item))
         .toList(), //리스트로 재변환
       ),
@@ -40,6 +40,9 @@ class _CatalogState extends State<Catalog> {
           item.title,
           style: TextStyle(fontSize: 31.0),
         ),
+        subtitle:Text(
+          '${item.price}'
+        ) ,
       ),padding: const EdgeInsets.all(8.0),
     );
   }
