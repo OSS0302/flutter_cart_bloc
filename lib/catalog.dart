@@ -43,6 +43,7 @@ class _CatalogState extends State<Catalog> {
         subtitle:Text(
           '${item.price}'
         ) ,
+        trailing: IconButton(icon: Icon(Icons.check), onPressed: () {}) , // trailing은 오른쪽 끝에 쓸수있는기능
       ),padding: const EdgeInsets.all(8.0),
     );
   }
