@@ -14,21 +14,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(key : _cartBloc,
-      child: BlocProvider(key: _cartBloc,
-          builder: (BuildContext context, List state){
-        return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-              primarySwatch: Colors.blue
-          ),
-          home: LoginScreen(),
-        );
+    return BlocProvider(
+       create: (BuildContext context) => _cartBloc,
+      child: BlocBuilder(bloc: _cartBloc,
+        builder: (BuildContext context,  List state)),
+       ),
 
-    }),
-    );
+
+    }
   }
-}
+
  // 첫번째 화면 stful 위젯
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
