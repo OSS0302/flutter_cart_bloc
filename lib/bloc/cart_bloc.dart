@@ -1,9 +1,6 @@
-
 import 'package:bloc/bloc.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../Item.dart';
+import 'package:flutter_cart_bloc/Item.dart';
 
 enum CartEventType{
   add, remove

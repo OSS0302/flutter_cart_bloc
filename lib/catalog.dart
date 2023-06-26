@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cart_bloc/bloc/cart_bloc.dart';
-import 'item.dart';
+import 'package:flutter_cart_bloc/Item.dart';
+
+
 
 // 두번째 화면 stful 위젯
 class Catalog extends StatefulWidget {
@@ -54,11 +56,18 @@ class _CatalogState extends State<Catalog> {
         subtitle: Text('${item.price}'),
         trailing: IconButton(
             icon: isChecked
-                ? Icon(Icons.check,
-                  color: Colors.red,
-              )
-            :Icon(Icons.check),
-            onPressed: () {}), // trailing은 오른쪽 끝에 쓸수있는기능
+                ? Icon(
+                    Icons.check,
+                    color: Colors.red,
+                  )
+                : Icon(Icons.check),
+            onPressed: () {
+              if (isChecked) {
+                cartBloc.add(CartEvent(CartEventType.remove, item));
+              } else {
+                cartBloc.add(CartEvent(CartEventType.add, item));
+              }
+            }), // trailing은 오른쪽 끝에 쓸수있는기능
       ),
       padding: const EdgeInsets.all(8.0),
     );
