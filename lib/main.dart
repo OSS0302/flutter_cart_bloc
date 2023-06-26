@@ -4,27 +4,35 @@ import 'package:flutter_cart_bloc/bloc/cart_bloc.dart';
 import 'package:flutter_cart_bloc/catalog.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   final _cartBloc = CartBloc([]);
-   MyApp({super.key});
+
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-       create: (BuildContext context) => _cartBloc,
-      child: BlocBuilder(bloc: _cartBloc,
-        builder: (BuildContext context,  List state)),
-       ),
-
-
-    }
+      create: (BuildContext context) => _cartBloc,
+      child: BlocBuilder<CartBloc, List>(
+          bloc: _cartBloc,
+          builder: (context, state) {
+            return MaterialApp(
+              title: 'Flutter Demo',
+              theme: ThemeData(
+                primarySwatch: Colors.lightBlue,
+              ),
+              home: LoginScreen(),
+            );
+          }),
+    );
   }
+}
 
- // 첫번째 화면 stful 위젯
+// 첫번째 화면 stful 위젯
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -41,16 +49,12 @@ class _LoginState extends State<LoginScreen> {
       ),
       body: Center(
         child: ElevatedButton(
-          child: Text('Enter'),
-          onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context)=> Catalog()));
-          }),
+            child: Text('Enter'),
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Catalog()));
+            }),
       ),
     );
   }
 }
-
-
-
-
