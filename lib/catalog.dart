@@ -44,8 +44,7 @@ class _CatalogState extends State<Catalog> {
   }
 
   Widget _buildItem(Item item, List state, CartBloc cartBloc) {
-    final isChecked = state.contains(item); //
-
+    final isChecked = state.contains(item); // 아이템 있는지 확인한다.
     return Padding(
       child: ListTile(
         title: Text(
@@ -54,7 +53,11 @@ class _CatalogState extends State<Catalog> {
         ),
         subtitle: Text('${item.price}'),
         trailing: IconButton(
-            icon: Icon(Icons.check),
+            icon: isChecked
+                ? Icon(Icons.check,
+                  color: Colors.red,
+              )
+            :Icon(Icons.check),
             onPressed: () {}), // trailing은 오른쪽 끝에 쓸수있는기능
       ),
       padding: const EdgeInsets.all(8.0),
