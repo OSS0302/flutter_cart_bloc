@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cart_bloc/bloc/cart_bloc.dart';
 import 'item.dart';
 
 // 두번째 화면 stful 위젯
@@ -14,37 +16,46 @@ class _CatalogState extends State<Catalog> {
 
   @override
   Widget build(BuildContext context) {
+    final _cartBloc = BlocProvider.of<CartBloc>(context);
+
     return Scaffold(
-      appBar:  AppBar(
-        title: Text('catclog'),
+      appBar: AppBar(
+        title: Text('Catalog'),
         actions: <Widget>[
-      IconButton(
-          icon: Icon(Icons.archive),
-          onPressed:() {
-          },
+          IconButton(
+            icon: Icon(Icons.archive),
+            onPressed: () {},
           ),
         ],
       ),
-      body: ListView(
-        children: _itemList
-            .map((item) => _buildItem(item))
-        .toList(), //리스트로 재변환
+      body: BlocProvider(
+        create: (BuildContext context) => _cartBloc,
+        child: BlocBuilder<CartBloc, List>(
+            bloc: _cartBloc,
+            builder: (context, state) {
+              return ListView(
+                children: _itemList
+                    .map((item) => _buildItem(item, state, _cartBloc))
+                    .toList(), //리스트로 재변환
+              );
+            }),
       ),
     );
   }
 
-  Widget _buildItem(Item item){
+  Widget _buildItem(Item item, List state, CartBloc cartBloc) {
     return Padding(
       child: ListTile(
         title: Text(
           item.title,
           style: TextStyle(fontSize: 31.0),
         ),
-        subtitle:Text(
-          '${item.price}'
-        ) ,
-        trailing: IconButton(icon: Icon(Icons.check), onPressed: () {}) , // trailing은 오른쪽 끝에 쓸수있는기능
-      ),padding: const EdgeInsets.all(8.0),
+        subtitle: Text('${item.price}'),
+        trailing: IconButton(
+            icon: Icon(Icons.check),
+            onPressed: () {}), // trailing은 오른쪽 끝에 쓸수있는기능
+      ),
+      padding: const EdgeInsets.all(8.0),
     );
   }
 }
