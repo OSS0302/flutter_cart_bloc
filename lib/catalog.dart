@@ -62,11 +62,13 @@ class _CatalogState extends State<Catalog> {
                   )
                 : Icon(Icons.check),
             onPressed: () {
-              if (isChecked) {
-                cartBloc.add(CartEvent(CartEventType.remove, item));
-              } else {
-                cartBloc.add(CartEvent(CartEventType.add, item));
-              }
+              setState(() {
+                if (isChecked) {
+                  cartBloc.add(CartEvent(CartEventType.remove, item));
+                } else {
+                  cartBloc.add(CartEvent(CartEventType.add, item));
+                }
+              });
             }), // trailing은 오른쪽 끝에 쓸수있는기능
       ),
       padding: const EdgeInsets.all(8.0),
