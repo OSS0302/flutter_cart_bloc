@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final _cartBloc = CartBloc([]);
+  final _cartBloc = CartBloc();
 
   MyApp({super.key});
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => _cartBloc,
-      child: BlocBuilder<CartBloc, List>(
+      child: BlocBuilder<CartBloc, CartState>(
           bloc: _cartBloc,
           builder: (context, state) {
             return MaterialApp(
