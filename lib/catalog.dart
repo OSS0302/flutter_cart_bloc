@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cart_bloc/bloc/cart_bloc.dart';
 import 'package:flutter_cart_bloc/Item.dart';
 
-
-
 // 두번째 화면 stful 위젯
 class Catalog extends StatefulWidget {
   const Catalog({Key? key}) : super(key: key);
@@ -32,12 +30,12 @@ class _CatalogState extends State<Catalog> {
       ),
       body: BlocProvider(
         create: (BuildContext context) => _cartBloc,
-        child: BlocBuilder<CartBloc, List>(
+        child: BlocBuilder<CartBloc, CartState>(
             bloc: _cartBloc,
             builder: (context, state) {
               return ListView(
                 children: _itemList
-                    .map((item) => _buildItem(item, state, _cartBloc))
+                    .map((item) => _buildItem(item, state.cartList!, _cartBloc))
                     .toList(), //리스트로 재변환
               );
             }),
@@ -57,18 +55,16 @@ class _CatalogState extends State<Catalog> {
         trailing: IconButton(
             icon: isChecked
                 ? Icon(
-                    Icons.check,
-                    color: Colors.red,
-                  )
+              Icons.check,
+              color: Colors.blue,
+            )
                 : Icon(Icons.check),
             onPressed: () {
-              setState(() {
-                if (isChecked) {
-                  cartBloc.add(CartEvent(CartEventType.remove, item));
-                } else {
-                  cartBloc.add(CartEvent(CartEventType.add, item));
-                }
-              });
+              if (isChecked) {
+                cartBloc.add(CartPressed(CartEventType.remove, item));
+              } else {
+                cartBloc.add(CartPressed(CartEventType.add, item));
+              }
             }), // trailing은 오른쪽 끝에 쓸수있는기능
       ),
       padding: const EdgeInsets.all(8.0),
