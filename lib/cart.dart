@@ -19,6 +19,19 @@ class _CartState extends State<Cart> {
       appBar:  AppBar(
         title: Text('Cart'),
       ),
+      body: BlocProvider(
+         create: (BuildContext context) =>_cartBloc,
+        child: BlocBuilder<CartBloc, CartState>(
+          bloc: _cartBloc,
+          builder: (context, state){
+            return Center(
+              child: Text('합계 :',
+             style:TextStyle(fontSize: 30) ,
+              ),
+            );
+          }
+        ),
+      ),
     );
   }
 
