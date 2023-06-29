@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cart_bloc/bloc/cart_bloc.dart';
 import 'package:flutter_cart_bloc/Item.dart';
+import 'package:flutter_cart_bloc/cart.dart';
 
 // 두번째 화면 stful 위젯
 class Catalog extends StatefulWidget {
@@ -24,7 +25,10 @@ class _CatalogState extends State<Catalog> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.archive),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_)=> Cart()));
+            },
           ),
         ],
       ),
