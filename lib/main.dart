@@ -5,7 +5,7 @@ import 'package:flutter_cart_bloc/catalog.dart';
 
 void main() {
   runApp(MyApp());
-  final cartBloc = CartBloc();
+  final cartBloc = CartBloc(); // bloc 최상단에 선언하고 했었지만 provider 패턴을 내림 선언 하는걿 선호 해서 지운다.
 }
 
   final cartBloc = CartBloc();
