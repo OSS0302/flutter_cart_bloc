@@ -9,8 +9,9 @@ void main() {
 
 }
 
-  final cartBloc = CartBloc();
+
 class MyApp extends StatelessWidget {
+
   MyApp({super.key});
   @override
   Widget build(BuildContext context) {
