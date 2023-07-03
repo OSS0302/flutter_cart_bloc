@@ -2,6 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cart_bloc/Item.dart';
 import 'package:flutter_cart_bloc/bloc/cart_bloc.dart';
+import 'package:flutter_cart_bloc/bloc/cart_provider.dart';
 import 'package:flutter_cart_bloc/main.dart';
 
 
@@ -15,6 +16,7 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
+   final cartBloc =CartProvider.of(context);
     final cartList = CartBloc();
     return Scaffold(
       appBar:  AppBar(
