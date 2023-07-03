@@ -5,6 +5,7 @@ import 'package:flutter_cart_bloc/catalog.dart';
 
 void main() {
   runApp(MyApp());
+  final cartBloc = CartBloc();
 }
 
   final cartBloc = CartBloc();
